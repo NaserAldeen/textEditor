@@ -15,32 +15,16 @@ class App extends Component {
     bold: false
   };
   fnStyle = styl => {
-    if (styl == "bold") {
-      if (this.state.bold) {
-        this.refs.bold.className = "btn btn-primary btn-lg mx-3";
-        this.setState({ bold: false });
-      } else {
-        this.refs.bold.className = "btn btn-danger btn-lg mx-3";
-        this.setState({ bold: "bold" });
-      }
-    }
-    if (styl == "italic") {
-      if (this.state.italic) {
-        this.refs.italic.className = "btn btn-primary btn-lg mx-3";
-        this.setState({ italic: false });
-      } else {
-        this.refs.italic.className = "btn btn-danger btn-lg mx-3";
-        this.setState({ italic: "italic" });
-      }
-    }
-    if (styl == "underline") {
-      if (this.state.underline) {
-        this.refs.underline.className = "btn btn-primary btn-lg mx-3";
-        this.setState({ underline: false });
-      } else {
-        this.refs.underline.className = "btn btn-danger btn-lg mx-3";
-        this.setState({ underline: "underline" });
-      }
+    if (this.state[styl]) {
+      this.refs[styl].className = "btn btn-primary btn-lg mx-3";
+      let newState = {};
+      newState[styl] = false;
+      this.setState(newState);
+    } else {
+      this.refs[styl].className = "btn btn-danger btn-lg mx-3";
+      let newState = {};
+      newState[styl] = styl;
+      this.setState(newState);
     }
   };
   fnColor = styl => {
